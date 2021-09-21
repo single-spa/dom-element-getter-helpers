@@ -16,15 +16,35 @@ export function chooseDomElementGetter<ExtraProps = {}>(
   opts: HelperOpts,
   props: AllProps<ExtraProps>
 ): () => HTMLElement {
+  let domElementGetter;
+
   if (props.domElement) {
-    return () => props.domElement;
+    domElementGetter = () => props.domElement;
   } else if (props.domElementGetter) {
-    return props.domElementGetter;
+    domElementGetter = props.domElementGetter;
   } else if (opts.domElementGetter) {
-    return opts.domElementGetter;
+    domElementGetter = opts.domElementGetter;
   } else {
-    return defaultDomElementGetter<ExtraProps>(props);
+    domElementGetter = defaultDomElementGetter<ExtraProps>(props);
   }
+
+  if (typeof domElementGetter !== "function") {
+    throw Error(
+      `single-spa's dom-element-getter-helpers was given an invalid domElementGetter. Expected a function, received ${typeof domElementGetter}`
+    );
+  }
+
+  return () => {
+    const domElement = domElementGetter(props);
+
+    if (!(domElement instanceof HTMLElement)) {
+      throw Error(
+        `single-spa's dom-element-getter-helpers: domElementGetter returned an invalid dom element. Expected HTMLElement, received ${typeof domElement}`
+      );
+    }
+
+    return domElement;
+  };
 }
 
 function defaultDomElementGetter<ExtraProps>(
