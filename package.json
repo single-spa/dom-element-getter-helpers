@@ -1,6 +1,6 @@
 {
   "name": "dom-element-getter-helpers",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Helpers for creating or retrieving dom element containers for single-spa applications",
   "type": "module",
   "main": "lib/dom-element-getter-helpers.js",
