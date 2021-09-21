@@ -18,7 +18,7 @@ pnpm install --save-dev dom-element-getter-helpers
 
 This accepts an options object and the single-spa props for an application or parcel. The options object can have a `domElementGetter` property on it. The props can have a `domElement` or `domElementGetter` property on it. If none of those properties are provided, a default dom element getter is used, which creates a div that is appended to `<body>`.
 
-This function returns a function that returns an HTMLElement container for the single-spa application or parcel.
+This function returns a function that returns an HTMLElement container for the single-spa application or parcel. Note that the single-spa props will automatically be passed to the domElementGetter function.
 
 ```js
 import { chooseDomElementGetter } from "dom-element-getter-helpers";

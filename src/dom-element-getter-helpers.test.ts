@@ -71,4 +71,17 @@ describe("dom-element-getter-helpers", () => {
       /was not given an application name/
     );
   });
+
+  it("throws if the domElementGetter is not a function", () => {
+    props.domElementGetter = "asdfsad";
+    expect(() => chooseDomElementGetter(opts, props)).toThrowError(
+      /an invalid domElementGetter/
+    );
+  });
+
+  it("throws if the domElementGetter function returns something that's not an HTMLElement", () => {
+    props.domElementGetter = () => "asdfsad";
+    const domElementGetter = chooseDomElementGetter(opts, props);
+    expect(domElementGetter).toThrowError(/returned an invalid dom element/);
+  });
 });
