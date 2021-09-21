@@ -30,7 +30,9 @@ export function chooseDomElementGetter<ExtraProps = {}>(
 
   if (typeof domElementGetter !== "function") {
     throw Error(
-      `single-spa's dom-element-getter-helpers was given an invalid domElementGetter. Expected a function, received ${typeof domElementGetter}`
+      `single-spa's dom-element-getter-helpers was given an invalid domElementGetter for application or parcel '${
+        props.name
+      }'. Expected a function, received ${typeof domElementGetter}`
     );
   }
 
@@ -39,7 +41,9 @@ export function chooseDomElementGetter<ExtraProps = {}>(
 
     if (!(domElement instanceof HTMLElement)) {
       throw Error(
-        `single-spa's dom-element-getter-helpers: domElementGetter returned an invalid dom element. Expected HTMLElement, received ${typeof domElement}`
+        `single-spa's dom-element-getter-helpers: domElementGetter returned an invalid dom element for application or parcel '${
+          props.name
+        }'. Expected HTMLElement, received ${typeof domElement}`
       );
     }
 
