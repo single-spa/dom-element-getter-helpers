@@ -84,4 +84,20 @@ describe("dom-element-getter-helpers", () => {
     const domElementGetter = chooseDomElementGetter(opts, props);
     expect(domElementGetter).toThrowError(/returned an invalid dom element/);
   });
+
+  it("passes props to opts.domElementGetter", () => {
+    opts.domElementGetter = jest
+      .fn()
+      .mockImplementation(() => document.createElement("div"));
+    chooseDomElementGetter(opts, props)();
+    expect(opts.domElementGetter).toHaveBeenCalledWith(props);
+  });
+
+  it("passes props to props.domElementGetter", () => {
+    props.domElementGetter = jest
+      .fn()
+      .mockImplementation(() => document.createElement("div"));
+    chooseDomElementGetter(opts, props)();
+    expect(props.domElementGetter).toHaveBeenCalledWith(props);
+  });
 });
