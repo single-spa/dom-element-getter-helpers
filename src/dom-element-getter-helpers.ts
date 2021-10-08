@@ -8,7 +8,7 @@ type AllProps<ExtraProps = {}> = AppProps &
     appName?: string;
   };
 
-interface HelperOpts<ExtraProps> {
+interface HelperOpts<ExtraProps = {}> {
   domElementGetter?(props?: ExtraProps): HTMLElement;
 }
 
