@@ -2,20 +2,20 @@ import { AppProps } from "single-spa";
 
 type AllProps<ExtraProps = {}> = AppProps &
   ExtraProps & {
-    domElement?: HTMLElement;
-    domElementGetter?(): HTMLElement;
+    domElement?: HTMLElement | ShadowRoot;
+    domElementGetter?(): HTMLElement | ShadowRoot;
     // Old versions of single-spa had an appName prop
     appName?: string;
   };
 
 interface HelperOpts {
-  domElementGetter?(): HTMLElement;
+  domElementGetter?(): HTMLElement | ShadowRoot;
 }
 
 export function chooseDomElementGetter<ExtraProps = {}>(
   opts: HelperOpts,
   props: AllProps<ExtraProps>
-): () => HTMLElement {
+): () => HTMLElement | ShadowRoot {
   let domElementGetter;
 
   if (props.domElement) {
@@ -39,11 +39,11 @@ export function chooseDomElementGetter<ExtraProps = {}>(
   return () => {
     const domElement = domElementGetter(props);
 
-    if (!(domElement instanceof HTMLElement)) {
+    if (!(domElement instanceof HTMLElement || domElement instanceof ShadowRoot)) {
       throw Error(
         `single-spa's dom-element-getter-helpers: domElementGetter returned an invalid dom element for application or parcel '${
           props.name
-        }'. Expected HTMLElement, received ${typeof domElement}`
+        }'. Expected HTMLElement or ShadowRoot, received ${typeof domElement}`
       );
     }
 
@@ -53,7 +53,7 @@ export function chooseDomElementGetter<ExtraProps = {}>(
 
 function defaultDomElementGetter<ExtraProps>(
   props: AllProps<ExtraProps>
-): () => HTMLElement {
+): () => HTMLElement | ShadowRoot {
   const appName = props.appName || props.name;
   if (!appName) {
     throw Error(
