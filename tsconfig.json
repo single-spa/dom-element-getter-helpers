@@ -1,8 +1,10 @@
 {
   "files": ["src/dom-element-getter-helpers.ts"],
   "compilerOptions": {
+    "lib": ["dom", "es2024"],
+    "target": "ESNext",
+    "module": "NodeNext",
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationDir": "lib"
+    "outDir": "lib"
   }
 }

@@ -1,12 +1,22 @@
-import { AppProps } from "single-spa";
+import { registerApplication, mountRootParcel } from "single-spa";
 
-type AllProps<ExtraProps = {}> = AppProps &
-  ExtraProps & {
-    domElement?: HTMLElement;
-    domElementGetter?(): HTMLElement;
-    // Old versions of single-spa had an appName prop
-    appName?: string;
-  };
+type CustomProps = Parameters<typeof mountRootParcel>[1];
+type Application<Props extends CustomProps> = Extract<
+  Parameters<typeof registerApplication<Props>>[1],
+  { bootstrap }
+>;
+type LifecycleFn<Props extends CustomProps> = Extract<
+  Application<Props>["bootstrap"],
+  (config: any) => Promise<any>
+>;
+type AppProps<Props extends CustomProps> = Parameters<LifecycleFn<Props>>[0];
+
+type AllProps<ExtraProps = {}> = AppProps<ExtraProps> & {
+  domElement?: HTMLElement;
+  domElementGetter?(): HTMLElement;
+  // Old versions of single-spa had an appName prop
+  appName?: string;
+};
 
 interface HelperOpts {
   domElementGetter?(): HTMLElement;
@@ -14,7 +24,7 @@ interface HelperOpts {
 
 export function chooseDomElementGetter<ExtraProps = {}>(
   opts: HelperOpts,
-  props: AllProps<ExtraProps>
+  props: AllProps<ExtraProps>,
 ): () => HTMLElement {
   let domElementGetter;
 
@@ -32,7 +42,7 @@ export function chooseDomElementGetter<ExtraProps = {}>(
     throw Error(
       `single-spa's dom-element-getter-helpers was given an invalid domElementGetter for application or parcel '${
         props.name
-      }'. Expected a function, received ${typeof domElementGetter}`
+      }'. Expected a function, received ${typeof domElementGetter}`,
     );
   }
 
@@ -43,7 +53,7 @@ export function chooseDomElementGetter<ExtraProps = {}>(
       throw Error(
         `single-spa's dom-element-getter-helpers: domElementGetter returned an invalid dom element for application or parcel '${
           props.name
-        }'. Expected HTMLElement, received ${typeof domElement}`
+        }'. Expected HTMLElement, received ${typeof domElement}`,
       );
     }
 
@@ -52,12 +62,12 @@ export function chooseDomElementGetter<ExtraProps = {}>(
 }
 
 function defaultDomElementGetter<ExtraProps>(
-  props: AllProps<ExtraProps>
+  props: AllProps<ExtraProps>,
 ): () => HTMLElement {
   const appName = props.appName || props.name;
   if (!appName) {
     throw Error(
-      `single-spa's dom-element-getter-helpers was not given an application name as a prop, so it can't make a unique dom element container for the react application`
+      `single-spa's dom-element-getter-helpers was not given an application name as a prop, so it can't make a unique dom element container for the react application`,
     );
   }
   const htmlId = `single-spa-application:${appName}`;
