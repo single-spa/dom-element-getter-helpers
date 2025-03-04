@@ -15,7 +15,7 @@
     "test": "cross-env BABEL_ENV=test jest --config jest.config.js",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "prepublishOnly": "pnpm build",
     "prepare": "husky"
   },
   "repository": {
