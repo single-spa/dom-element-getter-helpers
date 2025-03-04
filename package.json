@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "Helpers for creating or retrieving dom element containers for single-spa applications",
   "type": "module",
+  "packageManager": "pnpm@10.5.2",
   "exports": {
     ".": {
       "default": "./lib/dom-element-getter-helpers.js",
