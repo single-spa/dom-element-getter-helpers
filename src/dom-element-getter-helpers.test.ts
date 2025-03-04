@@ -19,7 +19,7 @@ describe("dom-element-getter-helpers", () => {
     expect(document.getElementById("single-spa-application:test")).toBe(null);
     const domElement = domElementGetter();
     expect(document.getElementById("single-spa-application:test")).toBe(
-      domElement
+      domElement,
     );
     expect(domElement.parentNode).toBe(document.body);
   });
@@ -68,14 +68,14 @@ describe("dom-element-getter-helpers", () => {
   it("throws if using default dom element getter and no name is provided", () => {
     delete props.name;
     expect(() => chooseDomElementGetter(opts, props)).toThrowError(
-      /was not given an application name/
+      /was not given an application name/,
     );
   });
 
   it("throws if the domElementGetter is not a function", () => {
     props.domElementGetter = "asdfsad";
     expect(() => chooseDomElementGetter(opts, props)).toThrowError(
-      /an invalid domElementGetter/
+      /an invalid domElementGetter/,
     );
   });
 
