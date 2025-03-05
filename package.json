@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/single-spa/dom-element-getter-helpers#readme",
   "dependencies": {
-    "single-spa": "7.0.0-beta.1"
+    "single-spa": "7.0.0-beta.2"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
