@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       single-spa:
-        specifier: 7.0.0-beta.1
-        version: 7.0.0-beta.1
+        specifier: 7.0.0-beta.2
+        version: 7.0.0-beta.2
     devDependencies:
       '@babel/core':
         specifier: ^7.15.5
@@ -1802,8 +1802,8 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
-  single-spa@7.0.0-beta.1:
-    resolution: {integrity: sha512-RMmRvSQ0wz95vZwmT7dRZS9liH9D/HETwNsQYoeuqLbo4kwrQv21GuDWqHHpUJchYk6MsrBcNBqt7gbScFxP3Q==}
+  single-spa@7.0.0-beta.2:
+    resolution: {integrity: sha512-fjvXiiZSj+Hv5LUSOeuAnYFutXJcUmHPoJp5NJ0SrD84jvji0r/y01IrpYizOTAXTag9x4yxLBpb1hnAi7qI2g==}
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -4213,7 +4213,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  single-spa@7.0.0-beta.1: {}
+  single-spa@7.0.0-beta.2: {}
 
   sisteransi@1.0.5: {}
 
