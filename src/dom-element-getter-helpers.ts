@@ -1,13 +1,12 @@
-import { CustomProps, LifeCycleFn } from "single-spa";
+import { AppProps } from "single-spa";
 
-type AppProps<Props extends CustomProps> = Parameters<LifeCycleFn<Props>>[0];
-
-type AllProps<ExtraProps = {}> = AppProps<ExtraProps> & {
-  domElement?: HTMLElement;
-  domElementGetter?(): HTMLElement;
-  // Old versions of single-spa had an appName prop
-  appName?: string;
-};
+type AllProps<ExtraProps = {}> = AppProps &
+  ExtraProps & {
+    domElement?: HTMLElement;
+    domElementGetter?(): HTMLElement;
+    // Old versions of single-spa had an appName prop
+    appName?: string;
+  };
 
 interface HelperOpts {
   domElementGetter?(): HTMLElement;
