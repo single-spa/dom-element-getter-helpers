@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       single-spa:
-        specifier: 7.0.0-beta.3
+        specifier: ^7.0.0-beta.3
         version: 7.0.0-beta.3
     devDependencies:
       '@babel/core':
