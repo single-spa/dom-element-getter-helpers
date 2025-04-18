@@ -1,6 +1,6 @@
 {
   "name": "dom-element-getter-helpers",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Helpers for creating or retrieving dom element containers for single-spa applications",
   "type": "module",
   "packageManager": "pnpm@10.5.2",
