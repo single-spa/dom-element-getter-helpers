@@ -8,12 +8,12 @@ type AllProps<ExtraProps = {}> = AppProps &
     appName?: string;
   };
 
-interface HelperOpts {
+export interface DomElementGetterOpts {
   domElementGetter?(): HTMLElement;
 }
 
 export function chooseDomElementGetter<ExtraProps = {}>(
-  opts: HelperOpts,
+  opts: DomElementGetterOpts,
   props: AllProps<ExtraProps>,
 ): () => HTMLElement {
   let domElementGetter;
