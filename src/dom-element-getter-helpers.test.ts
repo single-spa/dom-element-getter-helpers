@@ -67,14 +67,14 @@ describe("dom-element-getter-helpers", () => {
 
   it("throws if using default dom element getter and no name is provided", () => {
     delete props.name;
-    expect(() => chooseDomElementGetter(opts, props)).toThrowError(
+    expect(() => chooseDomElementGetter(opts, props)).toThrow(
       /was not given an application name/,
     );
   });
 
   it("throws if the domElementGetter is not a function", () => {
     props.domElementGetter = "asdfsad";
-    expect(() => chooseDomElementGetter(opts, props)).toThrowError(
+    expect(() => chooseDomElementGetter(opts, props)).toThrow(
       /an invalid domElementGetter/,
     );
   });
@@ -82,7 +82,7 @@ describe("dom-element-getter-helpers", () => {
   it("throws if the domElementGetter function returns something that's not an HTMLElement", () => {
     props.domElementGetter = () => "asdfsad";
     const domElementGetter = chooseDomElementGetter(opts, props);
-    expect(domElementGetter).toThrowError(/returned an invalid dom element/);
+    expect(domElementGetter).toThrow(/returned an invalid dom element/);
   });
 
   it("passes props to opts.domElementGetter", () => {
@@ -99,5 +99,10 @@ describe("dom-element-getter-helpers", () => {
       .mockImplementation(() => document.createElement("div"));
     chooseDomElementGetter(opts, props)();
     expect(props.domElementGetter).toHaveBeenCalledWith(props);
+  });
+
+  it("adds domElementGetterHelpers property to created dom elements", () => {
+    const domElement = chooseDomElementGetter(opts, props)();
+    expect(domElement.domElementGetterHelpers).toBe(true);
   });
 });
