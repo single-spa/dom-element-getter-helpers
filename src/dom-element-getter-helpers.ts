@@ -67,9 +67,16 @@ function defaultDomElementGetter<ExtraProps>(
     if (!domElement) {
       domElement = document.createElement("div");
       domElement.id = htmlId;
+      domElement.domElementGetterHelpers = true;
       document.body.appendChild(domElement);
     }
 
     return domElement;
   };
+}
+
+declare global {
+  interface HTMLElement {
+    domElementGetterHelpers?: boolean;
+  }
 }
