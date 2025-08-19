@@ -1,2 +1,0 @@
-feature
-Add domElementGetterHelpers to divs created by this library

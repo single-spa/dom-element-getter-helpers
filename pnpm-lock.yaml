@@ -31,8 +31,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       heeler:
-        specifier: ^3.1.1
-        version: 3.1.1(@types/node@24.3.0)
+        specifier: ^4.0.0
+        version: 4.0.0(@types/node@24.3.0)
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -942,6 +942,12 @@ packages:
   '@jridgewell/trace-mapping@0.3.30':
     resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
 
+  '@kwsites/file-exists@1.1.1':
+    resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
+
+  '@kwsites/promise-deferred@1.1.1':
+    resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
+
   '@napi-rs/wasm-runtime@0.2.12':
     resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
 
@@ -1437,8 +1443,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  heeler@3.1.1:
-    resolution: {integrity: sha512-5shUBYYT4f2N2Ga3hnr0vhx/rPMRlLiFW6WBOF4EHqgtsLvfHnNBZu0+cBc/Mctlkp18Xer7aJhAdLCt32WHXQ==}
+  heeler@4.0.0:
+    resolution: {integrity: sha512-TPr3zXtXvZDb/R7dAssCXaBmOSWIXt3NTPHGwRvWOsI4HPQ5xZn4pwZ8zpoIYdVTiCVxIoLwEQf2wtWizCub3g==}
     hasBin: true
 
   html-encoding-sniffer@4.0.0:
@@ -1983,6 +1989,9 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+
+  simple-git@3.28.0:
+    resolution: {integrity: sha512-Rs/vQRwsn1ILH1oBUy8NucJlXmnnLeLCfcvbSehkPzbv3wwoFWIdtfd6Ndo6ZPhlPsCZ60CPI4rxurnwAa+a2w==}
 
   single-spa@7.0.0-beta.9:
     resolution: {integrity: sha512-kNNrICWyN5EEdkahT3lsK8TxBsFKcANQGM9FA2jSV50KDlQ8Fa0XDPqy6kLHlawDLf/I98iZOYkTi4pCy64K7Q==}
@@ -3377,6 +3386,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@kwsites/file-exists@1.1.1':
+    dependencies:
+      debug: 4.4.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@kwsites/promise-deferred@1.1.1': {}
+
   '@napi-rs/wasm-runtime@0.2.12':
     dependencies:
       '@emnapi/core': 1.4.5
@@ -3855,11 +3872,13 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  heeler@3.1.1(@types/node@24.3.0):
+  heeler@4.0.0(@types/node@24.3.0):
     dependencies:
       '@inquirer/prompts': 7.8.3(@types/node@24.3.0)
+      simple-git: 3.28.0
     transitivePeerDependencies:
       - '@types/node'
+      - supports-color
 
   html-encoding-sniffer@4.0.0:
     dependencies:
@@ -4551,6 +4570,14 @@ snapshots:
   signal-exit@3.0.7: {}
 
   signal-exit@4.1.0: {}
+
+  simple-git@3.28.0:
+    dependencies:
+      '@kwsites/file-exists': 1.1.1
+      '@kwsites/promise-deferred': 1.1.1
+      debug: 4.4.1
+    transitivePeerDependencies:
+      - supports-color
 
   single-spa@7.0.0-beta.9: {}
 
